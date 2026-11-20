@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # GovGuide AI – Quick Start Guide
 
 ## Prerequisites
@@ -59,3 +60,7 @@ Run with `python test_retrieval.py`.
 
 ---
 *Feel free to ask for any further customisation, such as adding a new source type, changing chunk size, or packaging the service with Docker.*
+=======
+# GovConnect-AI-
+An intelligent RAG-based assistant for government scheme discovery and eligibility guidance.
+>>>>>>> fd2c000ce863249811ec93723b54b38217961a56

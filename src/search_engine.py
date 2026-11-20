@@ -5,8 +5,8 @@ from pathlib import Path
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
-
+from llm import generate_rag_answer
+import time
 # ==========================================
 # 1. LOAD KNOWLEDGE BASE
 # ==========================================
@@ -541,11 +541,15 @@ def search_schemes(question, top_k=5):
 # 8. DISPLAY RETRIEVED INFORMATION
 # ==========================================
 
+# ==========================================
+# 8. GENERATE ANSWER USING GEMINI
+# ==========================================
+
 def generate_answer(question):
 
     results = search_schemes(question)
 
-    print("\n========== GOVGUIDE AI ==========\n")
+    print("\n========== GOVCONNECT AI ==========\n")
 
     if not results:
 
@@ -557,28 +561,24 @@ def generate_answer(question):
 
         return
 
-    for result in results:
+    print("Generating answer using Gemini...\n")
 
-        print("Scheme:", result["source"])
+    try:
 
-        print("Information Type:", result["field"])
-
-        print(
-            "Relevance Score:",
-            round(result["score"], 4)
+        answer = generate_rag_answer(
+            question,
+            results
         )
 
-        print("\nRetrieved Information:")
+        print("ANSWER:\n")
+        print(answer)
 
-        print(result["text"])
+    except Exception as error:
 
-        if result["page"] != "Not available":
-            print("Page:", result["page"])
+        print("Unable to generate the answer using Gemini.")
+        print("Error:", error)
 
-        if result["official_link"]:
-            print("Official Link:", result["official_link"])
-
-        print("-" * 60)
+    print("\n" + "=" * 60)
 
 
 # ==========================================
