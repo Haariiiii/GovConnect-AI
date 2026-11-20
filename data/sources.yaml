@@ -1,0 +1,18 @@
+sources:
+  - name: central_portal
+    type: html
+    url: https://www.india.gov.in/content/schemes
+    description: Central government schemes listing page (contains links to PDFs and scheme pages)
+  - name: kerala_state_portal
+    type: html
+    url: https://kerala.gov.in/schemes
+    description: Kerala state government schemes page
+  - name: open_data_portal
+    type: csv
+    url: https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv
+    description: Sample CSV for testing the pipeline (replace with actual gov data later)
+  - name: myscheme_search
+    type: html
+    url: https://www.myscheme.gov.in/search
+    description: Search portal for all government schemes (HTML page with results)
+
