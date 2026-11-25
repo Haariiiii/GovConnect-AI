@@ -5,7 +5,10 @@ from pathlib import Path
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from llm import generate_rag_answer
+try:
+    from .llm import generate_rag_answer
+except ImportError:
+    from llm import generate_rag_answer
 import time
 # ==========================================
 # 1. LOAD KNOWLEDGE BASE

@@ -1,6 +1,7 @@
 
 import os
-
+import time
+from google.genai import errors
 from dotenv import load_dotenv
 from google import genai
 
@@ -70,9 +71,19 @@ USER QUESTION:
 Provide a helpful answer based only on the retrieved context.
 """
 
-    response = client.models.generate_content(
-        model=MODEL_NAME,
-        contents=prompt
-    )
+    for attempt in range(3):
+        try:
+            response = client.models.generate_content(
+                model=MODEL_NAME,
+                contents=prompt
+            )
+
+            return response.text
+
+        except errors.ServerError:
+            if attempt == 2:
+                raise
+
+            time.sleep(2 ** attempt)
 
     return response.text
